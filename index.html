@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="module">
+        // Import Firebase SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+      
+        // Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyB7AAT6A6FggiKYVkD7D-r3C4dkOSONNvw",
+          authDomain: "smartbus-eff5b.firebaseapp.com",
+          projectId: "smartbus-eff5b",
+          storageBucket: "smartbus-eff5b.firebasestorage.app",
+          messagingSenderId: "893667460966",
+          appId: "1:893667460966:web:3acfe1e753621d591f6aa7"
+        };
+      
+        // Initialize Firebase
+        console.log("Initializing Firebase...");
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        console.log("Firebase initialized successfully.");
+
+        async function fetchData() {
+            console.log("Fetching data from Firestore...");
+            let dataContainer = document.getElementById("data-display");
+            dataContainer.innerHTML = "<p>Loading data...</p>"; // Temporary message
+            
+            try {
+                const querySnapshot = await getDocs(collection(db, "test"));
+                dataContainer.innerHTML = ""; // Clear loading message
+
+                if (querySnapshot.empty) {
+                    console.warn("No data found in the 'test' collection.");
+                    dataContainer.innerHTML = "<p>No data found.</p>";
+                    return;
+                }
+
+                querySnapshot.forEach((doc) => {
+                    let data = doc.data();
+                    console.log(`Fetched document: ${doc.id} -> Data: ${data.data}`);
+
+                    let para = document.createElement("p");
+                    para.textContent = `Data: ${data.data}`;
+                    dataContainer.appendChild(para);
+                });
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                dataContainer.innerHTML = `<p style="color:red;">Error loading data: ${error.message}</p>`;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchData);
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket Booking</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('imag.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: rgba(173, 216, 230, 0.8);
+            padding: 15px;
+            position: fixed;
+            top: 0;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        .nav-buttons button {
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            background: #87CEEB;
+            color: white;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+        .nav-buttons button:hover {
+            background: #FFD700;
+            color: black;
+            transform: scale(1.1);
+        }
+        .welcome-section {
+            text-align: center;
+            padding: 60px;
+            font-size: 50px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.9);
+            width: 70%;
+            margin-top: 100px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .pay-button {
+            display: inline-block;
+            background: #87CEFA;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            text-align: center;
+            width: 200px;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+        .pay-button:hover {
+            background: #FFD700;
+            color: black;
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-buttons">
+            <button onclick="navigate('about.html')">About Us</button>
+            <button onclick="navigate('employee.html')">Employee Zone</button>
+            <button onclick="navigate('info.html')">General Info</button>
+            <button onclick="navigate('destination.html')">Destination</button>
+            <button onclick="navigate('more.html')">More</button>
+            <button onclick="navigate('contact.html')">Contact Us</button>
+        </div>
+    </header>
+    
+    <section class="welcome-section">
+        <p>WELCOME TO<br><span style="color: #4682B4;">BUS NAME</span></p>
+        <button class="pay-button" onclick="navigate('ticket.html')">GET TICKET</button>
+    </section>
+
+    <section id="data-display" style="margin-top: 20px; font-size: 20px; color: white;"></section>
+    
+    <script>
+        function navigate(page) {
+            window.location.href = page; 
+        }
+    </script>
+</body>
+</html>

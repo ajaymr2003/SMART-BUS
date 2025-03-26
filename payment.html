@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Bus Ticket Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('payment-bg.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            justify-content: center;
+        }
+        .payment-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .pay-button {
+            background: green;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        .pay-button:hover {
+            background: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-container">
+        <h2>Complete Your Payment</h2>
+
+        <label>Selected Destination</label>
+        <input type="text" id="destination" readonly>
+
+        <label>Amount to Pay</label>
+        <input type="text" id="amount" readonly>
+
+        <label>Select Payment Method</label>
+        <select id="payment-method" onchange="togglePaymentFields()">
+            <option value="card">Credit/Debit Card</option>
+            <option value="upi">UPI</option>
+            <option value="netbanking">Net Banking</option>
+        </select>
+
+        <div id="card-details">
+            <label>Card Number</label>
+            <input type="text" placeholder="1234 5678 9012 3456">
+            <label>Expiry Date</label>
+            <input type="text" placeholder="MM/YY">
+            <label>CVV</label>
+            <input type="password" placeholder="123">
+            <label>Cardholder Name</label>
+            <input type="text" placeholder="John Doe">
+        </div>
+
+        <div id="upi-details" style="display: none;">
+            <label>Select UPI App</label>
+            <select id="upi-app">
+                <option value="gpay">Google Pay</option>
+                <option value="phonepe">PhonePe</option>
+                <option value="paytm">Paytm</option>
+            </select>
+        </div>
+
+        <div id="netbanking-details" style="display: none;">
+            <label>Select Bank</label>
+            <select>
+                <option value="bank1">Bank 1</option>
+                <option value="bank2">Bank 2</option>
+                <option value="bank3">Bank 3</option>
+            </select>
+        </div>
+
+        <button class="pay-button" onclick="processPayment()">Pay Now</button>
+    </div>
+
+    <script>
+        function togglePaymentFields() {
+            let method = document.getElementById("payment-method").value;
+            document.getElementById("card-details").style.display = method === "card" ? "block" : "none";
+            document.getElementById("upi-details").style.display = method === "upi" ? "block" : "none";
+            document.getElementById("netbanking-details").style.display = method === "netbanking" ? "block" : "none";
+        }
+
+        function processPayment() {
+            alert("Payment Successful! Your ticket is booked.");
+            window.location.href = "index.html"; // Redirect to home
+        }
+
+        // Load stored data from ticket.html
+        window.onload = function () {
+            document.getElementById("destination").value = localStorage.getItem("userDestination");
+            document.getElementById("amount").value = localStorage.getItem("ticketAmount");
+        };
+    </script>
+
+</body>
+</html>

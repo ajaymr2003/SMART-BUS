@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('ticket-bg.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            justify-content: center;
+        }
+        .ticket-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .submit-button {
+            background: black;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        .submit-button:hover {
+            background: darkred;
+        }
+    </style>
+    <script type="module">
+        // Import Firebase SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+      
+        // Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyB7AAT6A6FggiKYVkD7D-r3C4dkOSONNvw",
+          authDomain: "smartbus-eff5b.firebaseapp.com",
+          projectId: "smartbus-eff5b",
+          storageBucket: "smartbus-eff5b.firebasestorage.app",
+          messagingSenderId: "893667460966",
+          appId: "1:893667460966:web:3acfe1e753621d591f6aa7"
+        };
+      
+        // Initialize Firebase
+        console.log("Initializing Firebase...");
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        console.log("Firebase initialized successfully.");
+
+        async function proceedToPayment() {
+            let name = document.getElementById("name").value;
+            let phone = document.getElementById("phone").value;
+            let destination = document.getElementById("destination").value;
+            let amount = document.getElementById("amount").value;
+
+            if (name === "" || phone === "" || amount === "") {
+                alert("Please enter all details.");
+                return;
+            }
+
+            try {
+                // Store data in Firestore
+                const docRef = await addDoc(collection(db, "bookings"), {
+                    name: name,
+                    phone: phone,
+                    destination: destination,
+                    amount: amount,
+                    timestamp: new Date()
+                });
+                console.log("Booking stored with ID: ", docRef.id);
+
+                // Store in localStorage for next page
+                localStorage.setItem("userName", name);
+                localStorage.setItem("userPhone", phone);
+                localStorage.setItem("userDestination", destination);
+                localStorage.setItem("ticketAmount", amount);
+
+                // Redirect to payment page
+                window.location.href = "payment.html";
+
+            } catch (error) {
+                console.error("Error storing booking:", error);
+                alert("Error processing booking. Try again.");
+            }
+        }
+
+        window.proceedToPayment = proceedToPayment;
+
+        function updateAmount() {
+            let destination = document.getElementById("destination");
+            let selectedOption = destination.options[destination.selectedIndex];
+            document.getElementById("amount").value = selectedOption.getAttribute("data-amount");
+        }
+
+        window.onload = updateAmount;
+    </script>
+</head>
+<body>
+
+    <div class="ticket-container">
+        <h2>Enter Details</h2>
+        <label>Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+        <label>Select Destination</label>
+        <select id="destination" onchange="updateAmount()">
+            <option value="City A" data-amount="100">City A - ₹100</option>
+            <option value="City B" data-amount="150">City B - ₹150</option>
+            <option value="City C" data-amount="200">City C - ₹200</option>
+        </select>
+
+        <label>Ticket Amount</label>
+        <input type="text" id="amount" readonly>
+
+        <button class="submit-button" onclick="proceedToPayment()">Proceed to Payment</button>
+    </div>
+
+</body>
+</html>
