@@ -1,0 +1,240 @@
+/* General Body Styles (can be overridden by index.html inline styles if needed) */
+body {
+    font-family: Arial, sans-serif; /* Default font */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Default background */
+    /* background: url('../images/bg.jpg') no-repeat center center/cover; /* Reference image relative to css folder */
+    /* height: 100vh;  /* Might conflict with index.html flex layout */
+}
+
+/* Container used in many info pages */
+.container {
+    padding: 20px; /* Reduced padding */
+    margin: 20px auto; /* Center container */
+    max-width: 900px; /* Max width */
+    background: white; /* Default background for containers */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* Styles from 1.html */
+.booking-form-container { /* Renamed from .container to avoid conflict */
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-header { /* Example class for page titles */
+     background-color: #008000; /* Green Header */
+     color: white;
+     padding: 10px 0;
+     text-align: center;
+     margin-bottom: 15px;
+ }
+
+ /* Keep nav styling in index.html as it's part of the shell */
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: space-around;
+    padding: 20px;
+    gap: 20px; /* Add gap between items */
+}
+
+.booking-form {
+    width: 100%; /* Take full width on small screens */
+    max-width: 500px; /* Limit max width */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Center form if it's the only item */
+}
+
+.booking-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.booking-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    text-align: left;
+}
+
+.booking-form input,
+.booking-form select,
+.ticket-container select, /* Added from ticket.html */
+.ticket-container input, /* Added from ticket.html */
+.payment-container input, /* Added from payment.html */
+.payment-container select /* Added from payment.html */
+ {
+    width: calc(100% - 22px); /* Account for padding */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px; /* Ensure consistent font size */
+}
+
+.booking-form button,
+.ticket-container button, /* Added from ticket.html */
+.payment-container button /* Added from payment.html */
+ {
+    background-color: #008000;
+    color: white;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+}
+.booking-form button:hover,
+.ticket-container button:hover,
+.payment-container button:hover {
+    background-color: #006400; /* Darker green */
+}
+
+
+.bus-image { /* from 1.html */
+     width: 100%; /* Adjust for responsiveness */
+     max-width: 400px;
+     text-align: center;
+     margin: 10px auto;
+ }
+.bus-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Styles from admin.html */
+.admin-container { /* Specific container */
+    width: 90%;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center heading */
+}
+.admin-container h2 {
+    color: #333;
+}
+.search-bar {
+    width: 80%; /* Adjust width */
+    max-width: 400px; /* Max width */
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.admin-table, /* Use classes for tables */
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-x: auto; /* Allow horizontal scrolling on small screens */
+}
+.admin-table th, .admin-table td,
+.summary-table th, .summary-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+.admin-table th {
+    background: #007BFF;
+    color: white;
+}
+.summary-table th {
+    background: #28a745;
+    color: white;
+}
+.admin-table tr:nth-child(even) {
+    background: #f2f2f2;
+}
+.admin-container p strong {
+    font-size: 1.1em;
+}
+
+
+/* Styles from destination.html */
+.destination-table { /* Specific class */
+    width: 95%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+     overflow-x: auto;
+}
+.destination-table th, .destination-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+.destination-table th {
+    background: #007BFF;
+    color: white;
+}
+.destination-table tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+/* Styles from ticket.html & payment.html */
+.ticket-container,
+.payment-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px; /* Adjusted padding */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%; /* Responsive width */
+    max-width: 450px; /* Max width */
+    text-align: center;
+    margin: 20px auto; /* Center */
+}
+.ticket-container label,
+.payment-container label {
+     display: block;
+     text-align: left;
+     margin-bottom: 5px;
+     margin-top: 10px;
+     color: #333;
+     font-weight: bold;
+ }
+
+.submit-button { /* From ticket.html */
+    background: black;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+.submit-button:hover {
+    background: #333; /* Darker grey */
+}
+
+.pay-button { /* From payment.html - General styles in booking-form button */
+    background: green; /* Specific color */
+}
+.pay-button:hover {
+    background: darkgreen;
+}
+
+/* Footer Styles (if you add a static footer to index.html) */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #dcdcdc;
+    color: #333;
+    margin-top: auto; /* Push footer to bottom in flex container */
+}
+
+/* Add other styles from individual files as needed, consolidating duplicates */
