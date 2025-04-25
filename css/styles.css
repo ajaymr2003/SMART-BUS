@@ -10,13 +10,19 @@ body {
 
 /* Container used in many info pages */
 .container {
-    padding: 20px; /* Reduced padding */
-    margin: 20px auto; /* Center container */
-    max-width: 900px; /* Max width */
-    background: white; /* Default background for containers */
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 1000px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     text-align: center;
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
 /* Styles from 1.html */
@@ -62,46 +68,63 @@ body {
 
 .booking-form label {
     display: block;
-    margin-bottom: 5px;
-    color: #555;
+    margin-bottom: 8px;
+    color: #4a5568;
+    font-weight: 500;
     text-align: left;
 }
 
 .booking-form input,
 .booking-form select,
-.ticket-container select, /* Added from ticket.html */
-.ticket-container input, /* Added from ticket.html */
-.payment-container input, /* Added from payment.html */
-.payment-container select /* Added from payment.html */
- {
-    width: calc(100% - 22px); /* Account for padding */
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px; /* Ensure consistent font size */
+.ticket-container select,
+.ticket-container input,
+.payment-container input,
+.payment-container select {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.booking-form input:focus,
+.booking-form select:focus,
+.ticket-container select:focus,
+.ticket-container input:focus,
+.payment-container input:focus,
+.payment-container select:focus {
+    border-color: #87CEEB;
+    box-shadow: 0 0 0 3px rgba(135, 206, 235, 0.2);
+    outline: none;
 }
 
 .booking-form button,
-.ticket-container button, /* Added from ticket.html */
-.payment-container button /* Added from payment.html */
- {
-    background-color: #008000;
+.ticket-container button,
+.payment-container button {
+    background: linear-gradient(45deg, #87CEEB, #4682B4);
     color: white;
-    padding: 12px 15px;
+    padding: 14px 28px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     width: 100%;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
 }
+
 .booking-form button:hover,
 .ticket-container button:hover,
 .payment-container button:hover {
-    background-color: #006400; /* Darker green */
+    background: linear-gradient(45deg, #4682B4, #87CEEB);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
-
 
 .bus-image { /* from 1.html */
      width: 100%; /* Adjust for responsiveness */
@@ -136,34 +159,45 @@ body {
     border-radius: 5px;
     border: 1px solid #ccc;
 }
-.admin-table, /* Use classes for tables */
-.summary-table {
+.admin-table,
+.summary-table,
+.destination-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    overflow-x: auto; /* Allow horizontal scrolling on small screens */
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 25px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
-.admin-table th, .admin-table td,
-.summary-table th, .summary-table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-.admin-table th {
-    background: #007BFF;
+.admin-table th,
+.summary-table th,
+.destination-table th {
+    background: linear-gradient(45deg, #87CEEB, #4682B4);
     color: white;
+    padding: 15px;
+    font-weight: 600;
 }
-.summary-table th {
-    background: #28a745;
-    color: white;
+.admin-table td,
+.summary-table td,
+.destination-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease;
 }
-.admin-table tr:nth-child(even) {
+.admin-table tr:nth-child(even),
+.summary-table tr:nth-child(even),
+.destination-table tr:nth-child(even) {
     background: #f2f2f2;
+}
+.admin-table tr:hover td,
+.summary-table tr:hover td,
+.destination-table tr:hover td {
+    background-color: #f8f9fa;
 }
 .admin-container p strong {
     font-size: 1.1em;
 }
-
 
 /* Styles from destination.html */
 .destination-table { /* Specific class */
@@ -180,34 +214,34 @@ body {
     border: 1px solid #ddd;
     text-align: center;
 }
-.destination-table th {
-    background: #007BFF;
-    color: white;
-}
-.destination-table tr:nth-child(even) {
-    background: #f2f2f2;
-}
 
 /* Styles from ticket.html & payment.html */
 .ticket-container,
 .payment-container {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px; /* Adjusted padding */
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    width: 90%; /* Responsive width */
-    max-width: 450px; /* Max width */
-    text-align: center;
-    margin: 20px auto; /* Center */
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 500px;
+    margin: 30px auto;
+    transition: all 0.3s ease;
 }
+
+.ticket-container:hover,
+.payment-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+}
+
 .ticket-container label,
 .payment-container label {
      display: block;
      text-align: left;
-     margin-bottom: 5px;
+     margin-bottom: 8px;
      margin-top: 10px;
-     color: #333;
-     font-weight: bold;
+     color: #4a5568;
+     font-weight: 500;
  }
 
 .submit-button { /* From ticket.html */
@@ -235,6 +269,29 @@ footer {
     background-color: #dcdcdc;
     color: #333;
     margin-top: auto; /* Push footer to bottom in flex container */
+}
+
+/* Enhanced Typography */
+h1, h2, h3 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Add other styles from individual files as needed, consolidating duplicates */
