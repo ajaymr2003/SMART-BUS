@@ -27,7 +27,7 @@ try {
 
 const routes = {
     '/': 'pages/home.html',
-    '/1': 'pages/1.html', // Keep if needed, maybe rename?
+    '/1': 'pages/1.html',
     '/about': 'pages/about.html',
     '/admin': 'pages/admin.html',
     '/booking': 'pages/booking.html',
@@ -35,7 +35,6 @@ const routes = {
     '/destination': 'pages/destination.html',
     '/employee': 'pages/employee.html',
     '/info': 'pages/info.html',
-    '/more': 'pages/more.html',
     '/payment': 'pages/payment.html',
     '/ticket': 'pages/ticket.html',
 };
