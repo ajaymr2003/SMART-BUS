@@ -15,10 +15,13 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: url('images/imag.jpg') no-repeat center center/cover; /* Ensure image path is correct */
-            min-height: 100vh; /* Use min-height */
-            display: flex; /* Use flex for layout */
-            flex-direction: column; /* Stack header and content */
+            background: #f4f4f4; /* Fallback color */
+            background-image: url('/images/bus-bg.jpg'); /* Updated path */
+            background-position: center;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         header {
             width: 100%;

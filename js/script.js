@@ -31,28 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
-
-    // Original code (might not work reliably if DOMContentLoaded already fired)
-    /*
-    const seatSelect = document.getElementById("seat"); // Might be null initially
-    const confirmBtn = document.getElementById("confirmBtn");
-    const confirmationMessage = document.getElementById("confirmationMessage");
-
-    if (seatSelect) { // Check if element exists after content load
-        seatSelect.addEventListener("change", function () {
-            if(confirmBtn) confirmBtn.disabled = seatSelect.value === "";
-        });
-
-        if (confirmBtn) {
-            confirmBtn.addEventListener("click", function () {
-                 if(confirmationMessage) {
-                    confirmationMessage.textContent = `Seat ${seatSelect.value} booked successfully!`;
-                    confirmationMessage.style.color = "green";
-                 }
-            });
-        }
-    }
-    */
 });
 
 console.log("script.js loaded"); // For debugging

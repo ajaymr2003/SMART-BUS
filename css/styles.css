@@ -1,39 +1,55 @@
 /* Modern Design System Variables */
 :root {
-  --primary: #2563eb;
-  --primary-dark: #1d4ed8;
+  /* Modern color palette */
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
   --secondary: #64748b;
   --accent: #f59e0b;
+  --success: #10b981;
+  --error: #ef4444;
   --background: #f8fafc;
   --surface: #ffffff;
-  --text: #0f172a;
-  --text-light: #64748b;
-  --danger: #dc2626;
-  --success: #16a34a;
-  --border-radius: 12px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+  --text: #1e293b;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-  --transition: all 0.3s ease;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+
+  /* Border radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Base Styles */
 body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  padding: 0;
+  font-family: 'Inter', system-ui, sans-serif;
   background: var(--background);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 /* Modern Container */
 .container {
-  padding: 2rem;
-  margin: 2rem auto;
+  padding: var(--spacing-lg);
+  margin: var(--spacing-lg) auto;
   max-width: 1200px;
   background: var(--surface);
-  border-radius: var(--border-radius);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   border: 1px solid rgba(0,0,0,0.05);
   transition: var(--transition);
@@ -47,9 +63,9 @@ body {
 .payment-container input,
 .payment-container select {
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: var(--spacing-sm) var(--spacing-md);
   border: 1px solid #e2e8f0;
-  border-radius: var(--border-radius);
+  border-radius: var(--radius-md);
   background: var(--surface);
   font-size: 1rem;
   transition: var(--transition);
@@ -72,9 +88,9 @@ body {
 .pay-button {
   background: var(--primary);
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: var(--spacing-sm) var(--spacing-md);
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: var(--radius-md);
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
@@ -96,7 +112,7 @@ body {
 .destination-table {
   width: 100%;
   border-spacing: 0;
-  border-radius: var(--border-radius);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   background: var(--surface);
@@ -107,7 +123,7 @@ body {
 .destination-table th {
   background: var(--primary);
   color: white;
-  padding: 1rem;
+  padding: var(--spacing-md);
   font-weight: 600;
   text-align: left;
 }
@@ -115,7 +131,7 @@ body {
 .admin-table td,
 .summary-table td,
 .destination-table td {
-  padding: 1rem;
+  padding: var(--spacing-md);
   border-bottom: 1px solid #e2e8f0;
 }
 
@@ -123,10 +139,10 @@ body {
 .search-bar {
   width: 100%;
   max-width: 400px;
-  padding: 0.75rem 1rem;
+  padding: var(--spacing-sm) var(--spacing-md);
   border: 1px solid #e2e8f0;
-  border-radius: var(--border-radius);
-  margin-bottom: 1.5rem;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
   font-size: 1rem;
   transition: var(--transition);
 }
@@ -140,34 +156,34 @@ body {
 /* Modern Welcome Section */
 .welcome-section {
   text-align: center;
-  padding: 4rem 2rem;
+  padding: calc(var(--spacing-lg) * 2) var(--spacing-lg);
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: white;
-  border-radius: var(--border-radius);
-  margin: 2rem auto;
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-lg) auto;
   max-width: 1000px;
 }
 
 .welcome-section p {
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-lg);
 }
 
 /* Modern Navigation */
 .nav-buttons {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-sm);
   flex-wrap: wrap;
   justify-content: center;
-  padding: 1rem;
+  padding: var(--spacing-md);
 }
 
 .nav-buttons a {
-  padding: 0.75rem 1.5rem;
+  padding: var(--spacing-sm) var(--spacing-md);
   color: var(--text);
   text-decoration: none;
-  border-radius: var(--border-radius);
+  border-radius: var(--radius-md);
   transition: var(--transition);
   background: var(--surface);
   box-shadow: var(--shadow-sm);
@@ -185,12 +201,12 @@ body {
 .ticket-container,
 .payment-container {
   background: var(--surface);
-  padding: 2rem;
-  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   width: 100%;
   max-width: 500px;
-  margin: 2rem auto;
+  margin: var(--spacing-lg) auto;
   border: 1px solid rgba(0,0,0,0.05);
 }
 
@@ -199,13 +215,13 @@ body {
   .container,
   .ticket-container,
   .payment-container {
-    margin: 1rem;
-    padding: 1.5rem;
+    margin: var(--spacing-md);
+    padding: var(--spacing-md);
   }
   
   .nav-buttons {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--spacing-xs);
   }
   
   .welcome-section p {
@@ -227,4 +243,29 @@ body {
 
 .fade-in {
   animation: fadeIn 0.5s ease-out;
+}
+
+/* Modern Components */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
 }
