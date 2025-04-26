@@ -24,7 +24,6 @@ try {
     // Optionally display an error to the user
 }
 
-
 const routes = {
     '/': 'pages/home.html',
     '/1': 'pages/1.html',
@@ -75,7 +74,6 @@ const executeScripts = (containerElement) => {
     });
 };
 
-
 // Function to load content
 const loadContent = async (path) => {
     contentDiv.innerHTML = '<p>Loading...</p>'; // Show loading indicator
@@ -94,15 +92,15 @@ const loadContent = async (path) => {
         // Example: Re-attach event listeners if needed (using event delegation on `contentDiv` is better)
 
         // Specific logic for pages that need Firebase *after* loading
-        const currentHash = window.location.hash.substring(1) || '/';
+        const currentPath = window.location.pathname;
 
-        if (currentHash === '/admin' && typeof fetchPassengerData === 'function') {
+        if (currentPath === '/admin' && typeof fetchPassengerData === 'function') {
              console.log("Initializing admin page data fetch...");
              // fetchPassengerData(); // This function should be defined globally by the loaded admin.html script
              // Safer: Find the function if it's attached to window or defined globally
              if (window.fetchPassengerData) window.fetchPassengerData();
 
-        } else if (currentHash === '/ticket') {
+        } else if (currentPath === '/ticket') {
             // Attach event listeners defined in ticket.html's script
              const proceedButton = contentDiv.querySelector('.submit-button');
              const destinationSelect = contentDiv.querySelector('#destination');
@@ -117,7 +115,7 @@ const loadContent = async (path) => {
                  updateAmount();
              }
 
-        } else if (currentHash === '/payment') {
+        } else if (currentPath === '/payment') {
             // Re-attach listeners and load data for payment page
             const paymentMethodSelect = contentDiv.querySelector('#payment-method');
             const payButton = contentDiv.querySelector('.pay-button');
@@ -134,31 +132,54 @@ const loadContent = async (path) => {
              if (destInput) destInput.value = localStorage.getItem("userDestination") || 'N/A';
              if (amountInput) amountInput.value = localStorage.getItem("ticketAmount") || 'N/A';
 
-        } else if (currentHash === '/' && typeof fetchData === 'function') {
+        } else if (currentPath === '/' && typeof fetchData === 'function') {
              console.log("Initializing home page data fetch...");
              // fetchData(); // Call the function defined in home.html's script
              if (window.fetchData) window.fetchData();
         }
 
-
     } catch (error) {
         console.error('Failed to load page:', error);
-        contentDiv.innerHTML = `<p>Error loading page. ${error.message}. <a href="#/">Go Home</a></p>`;
+        contentDiv.innerHTML = `<p>Error loading page. ${error.message}. <a href="/">Go Home</a></p>`;
     }
 };
 
-// Function to handle routing
-const handleRouteChange = () => {
-    const hash = window.location.hash.substring(1) || '/'; // Get hash path, default to '/'
-    const path = routes[hash];
-
-    if (path) {
-        loadContent(path);
-    } else {
-        // Handle 404 Not Found
-        contentDiv.innerHTML = '<p>Page not found (404). <a href="#/">Go Home</a></p>';
+// Function to handle routing using History API
+const handleLocation = async () => {
+    const path = window.location.pathname;
+    const route = routes[path] || routes['/'];
+    
+    try {
+        await loadContent(route);
+    } catch (error) {
+        console.error('Error loading route:', error);
+        contentDiv.innerHTML = `<p>Error loading page. ${error.message}. <a href="/">Go Home</a></p>`;
     }
 };
+
+// Handle navigation
+document.addEventListener('click', e => {
+    const { target } = e;
+    if (!target.matches('a')) {
+        return;
+    }
+    e.preventDefault();
+    const href = target.getAttribute('href');
+    if (href.startsWith('http') || href.startsWith('//')) {
+        window.location.href = href;
+        return;
+    }
+    window.history.pushState({}, '', href);
+    handleLocation();
+});
+
+// Handle browser back/forward
+window.addEventListener('popstate', handleLocation);
+
+// Initial load
+window.addEventListener('DOMContentLoaded', () => {
+    handleLocation();
+});
 
 // --- Global Firebase Functions (Moved from specific pages if possible/needed) ---
 // These functions need to be globally accessible or passed to the loaded scripts if needed.
@@ -236,7 +257,6 @@ window.updateDestinationSummary = function(destinationCounts) {
      }
 }
 
-
 // From admin.html - Search (needs to be global or re-attached)
 window.searchPassenger = function() {
     let input = document.getElementById("searchInput")?.value.toLowerCase();
@@ -287,8 +307,9 @@ window.proceedToPayment = async function() {
          localStorage.setItem("userDestination", destination);
          localStorage.setItem("ticketAmount", amount);
 
-         // Navigate to payment page using hash
-         window.location.hash = '#/payment';
+         // Navigate to payment page using history API
+         window.history.pushState({}, '', '/payment');
+         handleLocation();
 
      } catch (error) {
          console.error("Error storing booking:", error);
@@ -320,7 +341,8 @@ window.processPayment = function() {
      // localStorage.removeItem("ticketAmount");
 
      // Redirect to home page
-     window.location.hash = '#/';
+     window.history.pushState({}, '', '/');
+     handleLocation();
 }
 
 // From home.html (original index.html data fetch)
@@ -356,10 +378,3 @@ window.fetchData = async function() {
         dataContainer.innerHTML = `<p style="color:red;">Error loading test data: ${error.message}</p>`;
     }
 }
-
-// --- Event Listeners ---
-// Listen for hash changes
-window.addEventListener('hashchange', handleRouteChange);
-
-// Load initial content based on the current hash when the page loads
-window.addEventListener('DOMContentLoaded', handleRouteChange);
