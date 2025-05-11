@@ -1,20 +1,20 @@
 /* Modern Design System Variables */
 :root {
-  /* Modern color palette */
-  --primary: #3b82f6;
-  --primary-dark: #2563eb;
-  --secondary: #64748b;
-  --accent: #f59e0b;
-  --success: #10b981;
+  /* Black & White color palette */
+  --primary: #111111;
+  --primary-dark: #000000;
+  --secondary: #444444;
+  --accent: #ffffff;
+  --success: #1db954;
   --error: #ef4444;
-  --background: #f8fafc;
-  --surface: #ffffff;
-  --text: #1e293b;
+  --background: #ffffff;
+  --surface: #f7f7f7;
+  --text: #111111;
 
   /* Elevation */
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.10);
 
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -37,10 +37,14 @@
 
 /* Base Styles */
 body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background: var(--background);
-  color: var(--text);
-  line-height: 1.5;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #111;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Modern Container */
@@ -87,13 +91,14 @@ body {
 .submit-button,
 .pay-button {
   background: var(--primary);
-  color: white;
+  color: var(--accent);
   padding: var(--spacing-sm) var(--spacing-md);
   border: none;
   border-radius: var(--radius-md);
   font-weight: 600;
   cursor: pointer;
-  transition: var(--transition);
+  transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--shadow-sm);
 }
 
 .booking-form button:hover,
@@ -101,9 +106,11 @@ body {
 .payment-container button:hover,
 .submit-button:hover,
 .pay-button:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  background: var(--accent);
+  color: var(--primary);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+  border: 1px solid var(--primary);
 }
 
 /* Modern Tables */
@@ -156,45 +163,59 @@ body {
 /* Modern Welcome Section */
 .welcome-section {
   text-align: center;
-  padding: calc(var(--spacing-lg) * 2) var(--spacing-lg);
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  color: white;
-  border-radius: var(--radius-lg);
-  margin: var(--spacing-lg) auto;
-  max-width: 1000px;
+  padding: 50px;
+  font-size: 42px;
+  font-weight: bold;
+  background: #fff;
+  color: #111;
+  width: 85%;
+  max-width: 900px;
+  margin-top: 30px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+  border-radius: 20px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.welcome-section span {
+  color: #000;
 }
 
 .welcome-section p {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: var(--spacing-lg);
+  color: var(--primary-dark);
 }
 
 /* Modern Navigation */
 .nav-buttons {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
-  padding: var(--spacing-md);
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 20px;
 }
 
 .nav-buttons a {
-  padding: var(--spacing-sm) var(--spacing-md);
-  color: var(--text);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: 1px solid #111;
+  cursor: pointer;
+  background: #fff;
+  color: #111;
+  border-radius: 30px;
+  transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.2s;
   text-decoration: none;
-  border-radius: var(--radius-md);
-  transition: var(--transition);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid rgba(0,0,0,0.05);
 }
 
 .nav-buttons a:hover {
-  background: var(--primary);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  background: #111;
+  color: #fff;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.13);
 }
 
 /* Modern Cards */
@@ -208,6 +229,67 @@ body {
   max-width: 500px;
   margin: var(--spacing-lg) auto;
   border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Employee Details Table Styles */
+.employee-details-table {
+  width: 100%;
+  max-width: 500px;
+  margin: 2rem auto 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.employee-details-table th,
+.employee-details-table td {
+  padding: 14px 18px;
+  text-align: left;
+}
+
+.employee-details-table th {
+  background: #111;
+  color: #fff;
+  font-weight: 700;
+  border-bottom: 2px solid #eee;
+}
+
+.employee-details-table tr:not(:last-child) td {
+  border-bottom: 1px solid #eee;
+}
+
+.employee-details-table tr:hover {
+  background: #f7f7f7;
+  transition: background 0.2s;
+}
+
+.employee-details-table td {
+  color: #222;
+}
+
+.employee-details-table td:first-child {
+  font-weight: 600;
+  color: #444;
+}
+
+.employee-details-table td:last-child {
+  font-family: 'Poppins', monospace, sans-serif;
+  color: #666;
+}
+
+/* Responsive for employee table */
+@media (max-width: 600px) {
+  .employee-details-table,
+  .employee-details-table th,
+  .employee-details-table td {
+    font-size: 0.95rem;
+    padding: 10px 6px;
+  }
 }
 
 /* Responsive Design */
@@ -229,11 +311,42 @@ body {
   }
 }
 
+@media (max-width: 900px) {
+  .welcome-section {
+    font-size: 28px;
+    padding: 30px 10px;
+  }
+  .nav-buttons {
+    gap: 10px;
+    padding: 0 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  .welcome-section {
+    font-size: 20px;
+    padding: 18px 4px;
+    margin-top: 10px;
+  }
+  .pay-button {
+    font-size: 16px;
+    width: 100%;
+    padding: 12px 0;
+  }
+  .nav-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+  header {
+    padding: 10px;
+  }
+}
+
 /* Modern Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(1rem);
+    transform: translateY(-15px);
   }
   to {
     opacity: 1;
@@ -268,4 +381,66 @@ body {
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
   box-shadow: var(--shadow-md);
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: #111;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  z-index: 10;
+}
+
+#app-content {
+  flex-grow: 1;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.pay-button {
+  display: inline-block;
+  background: #111;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 15px 30px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  text-align: center;
+  width: 200px;
+  border-radius: 30px;
+  transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+
+.pay-button:hover {
+  background: #fff;
+  color: #111;
+  border: 1px solid #111;
+  transform: scale(1.07);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+}
+
+#data-display {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #111;
+  background: #f7f7f7;
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 600px;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  animation: fadeIn 1.2s;
+}
+
+#data-display p {
+  margin: 5px 0;
 }

@@ -4,138 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bus Ticket Booking</title>
-    <!-- Add base tag for routing -->
     <base href="/">
-    <!-- Link shared CSS -->
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Link specific styles from original index.html head -->
-    <style>
-        /* Keep styles specific to the shell (header, overall layout) here */
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4; /* Fallback color */
-            background-image: url('/images/bus-bg.jpg'); /* Updated path */
-            background-position: center;
-            background-size: cover;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        header {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            background: linear-gradient(45deg, rgba(173, 216, 230, 0.95), rgba(135, 206, 235, 0.95));
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            z-index: 10;
-        }
-        
-        .nav-buttons {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 1200px;
-            width: 100%;
-            padding: 0 20px;
-        }
-        
-        .nav-buttons a {
-            font-size: 15px;
-            font-weight: 600;
-            padding: 12px 24px;
-            border: none;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.2);
-            color: #2c3e50;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .nav-buttons a:hover {
-            background: #FFD700;
-            color: #2c3e50;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        /* Container for dynamically loaded content */
-        #app-content {
-            flex-grow: 1; /* Allow content to fill remaining space */
-            padding-top: 20px; /* Add some space below the header */
-            display: flex; /* Center content vertically/horizontally */
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-        }
-
-         /* Add styles from original index that affect content loaded dynamically */
-         .welcome-section {
-            text-align: center;
-            padding: 50px;
-            font-size: 42px;
-            font-weight: bold;
-            background: rgba(255, 255, 255, 0.95);
-            width: 85%;
-            max-width: 900px;
-            margin-top: 30px;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
-            border-radius: 20px;
-            animation: fadeIn 1.5s ease-in-out;
-            backdrop-filter: blur(10px);
-        }
-        .pay-button {
-            display: inline-block;
-            background: #87CEFA;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            padding: 15px 30px;
-            border: none;
-            cursor: pointer;
-            margin-top: 20px;
-            text-align: center;
-            width: 200px;
-            border-radius: 30px;
-            transition: 0.3s;
-            text-decoration: none; /* Style link as button */
-        }
-        .pay-button:hover {
-            background: #FFD700;
-            color: black;
-            transform: scale(1.1);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        #data-display {
-             margin-top: 20px;
-             font-size: 18px; /* Adjusted */
-             color: #333; /* Adjusted color for better visibility on white bg */
-             background: rgba(255, 255, 255, 0.8);
-             padding: 15px;
-             border-radius: 8px;
-             max-width: 600px;
-             text-align: left;
-        }
-        #data-display p {
-            margin: 5px 0;
-        }
-    </style>
 </head>
 <body>
     <header>
         <div class="nav-buttons">
-            <!-- Update links to remove hash -->
             <a href="/about">About Us</a>
             <a href="/employee">Employee Zone</a>
             <a href="/info">General Info</a>
@@ -145,16 +19,9 @@
             <a href="/">Home</a>
         </div>
     </header>
-
-    <!-- Content will be loaded here by the router -->
     <main id="app-content">
-        <!-- Optional: Loading indicator -->
         <p>Loading...</p>
     </main>
-
-    <!-- Include the router script -->
-    <!-- Make it type="module" if router.js uses import/export, otherwise remove type -->
     <script src="js/router.js" type="module"></script>
-
 </body>
 </html>

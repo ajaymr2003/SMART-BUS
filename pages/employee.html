@@ -4,37 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Zone</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background: #f4f4f4;
-        }
-        .container {
-            padding: 50px;
-        }
-        .back-button {
-            margin: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background: black;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        .back-button:hover {
-            background: darkred;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <button class="back-button" onclick="goBack()">Back</button>
     <div class="container">
         <h1>Employee Zone</h1>
         <p>Dedicated section for our employees. Log in to access schedules, payroll, and company updates.</p>
+        <!-- Employee Details Section -->
+        <div style="margin-top:2rem;">
+            <h2>Our Team</h2>
+            <table style="width:100%;max-width:500px;margin:auto;border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th style="border-bottom:1px solid #ccc;padding:8px;text-align:left;">Role</th>
+                        <th style="border-bottom:1px solid #ccc;padding:8px;text-align:left;">Name</th>
+                        <th style="border-bottom:1px solid #ccc;padding:8px;text-align:left;">Contact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding:8px;">Driver</td>
+                        <td style="padding:8px;">Ravi Kumar</td>
+                        <td style="padding:8px;">+91-9876543210</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:8px;">Conductor</td>
+                        <td style="padding:8px;">Suresh Singh</td>
+                        <td style="padding:8px;">+91-9123456780</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <script>
         function goBack() {
